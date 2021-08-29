@@ -36,13 +36,6 @@ static const char * const CStringFromNSString(NSString *string)
 #pragma mark - C interface
 
 extern "C" {
-    
-    void __IOS_Initialize()
-    {
-        FRadioPlayerPluginUnityProtocol *callback = [[FRadioPlayerPluginUnityProtocol alloc] init];
-        [[FRadioPlayer shared] setDelegate:callback];
-    }
-
     void __IOS_SetRadioURL(const char* str) {
         NSString *strNS = NSStringFromCString(str);
         [[FRadioPlayer shared] setRadioURL: [NSURL URLWithString:strNS]];
@@ -55,13 +48,4 @@ extern "C" {
     void __IOS_Stop() {
         [[FRadioPlayer shared] stop];
     }
-    
-//    const char* __IOS_TestFunc1(const char* str) {
-//        NSString *strNS = NSStringFromCString(str);
-//        return strdup(CStringFromNSString([[MyUnityPluginContoller GetInstance] TestFunc1WithStr:strNS]));
-//    }
-//
-//    NSInteger __IOS_TestFunc2(int num) {
-//        return [[MyUnityPluginContoller GetInstance] TestFunc2WithNum:num];
-//    }
 }
